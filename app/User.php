@@ -28,9 +28,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    //one to one relationship
+    //one to many relationship
     public function role(){
        return $this->belongsTo("App\Role");
+    }
+
+    //one to one relationship
+    public function photo(){
+        return $this->belongsTo("App\Photo");
     }
 
 }

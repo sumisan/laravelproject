@@ -50,8 +50,8 @@
                 <li>
                     <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-search"></i> Users <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                     <ul id="submenu-1" class="collapse">
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> All Users</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Create User</a></li>                        
+                        <li><a href="{{ route('users.index') }}"><i class="fa fa-angle-double-right"></i> All Users</a></li>
+                        <li><a href="{{ route('users.create') }}"><i class="fa fa-angle-double-right"></i> Create User</a></li>                        
                     </ul>
                 </li>
 
