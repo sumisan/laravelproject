@@ -3,7 +3,7 @@
 <head>
 	<title>Admin Template</title>
 
-	  <meta charset="utf-8">
+	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   	<link rel="stylesheet" type="text/css" href="{{asset('css/customstyles.css')}}">
@@ -50,27 +50,24 @@
                 <li>
                     <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-search"></i> Users <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                     <ul id="submenu-1" class="collapse">
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 1.1</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 1.2</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 1.3</a></li>
+                        <li><a href="#"><i class="fa fa-angle-double-right"></i> All Users</a></li>
+                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Create User</a></li>                        
                     </ul>
                 </li>
 
                 <li>
                     <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>  Posts <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                     <ul id="submenu-2" class="collapse">
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.1</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.2</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.3</a></li>
+                        <li><a href="#"><i class="fa fa-angle-double-right"></i> All Posts</a></li>
+                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Create Post</a></li>                        
                     </ul>
                 </li>
 
                 <li>
                     <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>  Categories <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                     <ul id="submenu-2" class="collapse">
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.1</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.2</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.3</a></li>
+                        <li><a href="#"><i class="fa fa-angle-double-right"></i> All Categories</a></li>
+                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Create Category</a></li>                        
                     </ul>
                 </li>
 
@@ -92,10 +89,10 @@
         <div class="container-fluid">
             <!-- Page Heading -->
             <div class="row" id="main" >
-                <div class="col-sm-12 col-md-12 well" id="content">
-                    <h1>Welcome Admin!</h1>
+                <div class="col-sm-12 col-md-12 well" id="content">                    
 
-                    @yield('contents')
+                    @yield('content')
+
                 </div>
             </div>
             <!-- /.row -->

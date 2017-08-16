@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsersRequest;
 use Illuminate\Http\Request;
+use App\User;
+use App\Role;
 
 class AdminUsersController extends Controller
 {
@@ -13,7 +16,10 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        return view("admin.users.index");
+
+        $users = User::all();
+
+        return view("admin.users.index", compact('users'));
     }
 
     /**
@@ -23,7 +29,18 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        //
+        //all() brings a collection that we do not want. We want an array.
+        //pluck replaced lists()
+       // $roles = Role::pluck("name","id")->all();
+
+        //alternative
+        $roles = Role::get()->pluck("name", "id")->toArray();
+
+       // $roles[" "] = "Choose role";
+
+        //return $roles;
+
+        return view("admin.users.create", compact('roles'));
     }
 
     /**
@@ -32,9 +49,13 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsersRequest $request)
     {
-        //
+        //persist data in the database
+        User::create($request->all());
+
+        return redirect("admin/users");
+       // return $request->all();
     }
 
     /**
