@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsersRequest;
+use App\Http\Requests\EditUserRequest;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
@@ -78,7 +79,9 @@ class AdminUsersController extends Controller
 
         //encrypt password
 
-        $input['password'] = bcrypt($request->password);
+        $password = trim($request->password);
+
+        $input['password'] = bcrypt($password);
 
         //save all the data provided
         User::create($input);
@@ -109,7 +112,13 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        //get user's record with given id
+        $user = User::findOrFail($id);
+
+        //get roles
+        $roles = Role::pluck('name', 'id')->all();
+
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -119,9 +128,53 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditUserRequest $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        //check if password field populated or not
+        if(trim($request->password) != ''){    
+
+            $input = $request->all();
+
+            $password = trim($request->password);
+
+            $input['password'] = bcrypt($password);
+
+        }else{
+            
+            //do not include password field if its empty.ignore it.
+            //use only() -- to include fields to be populated.
+            $input = $request->except('password');
+        }
+        
+
+        if ($file = $request->file('photo_id')) {
+            
+            //get photo name
+            $name = time() . $file->getClientOriginalName();
+
+            //store image in images folder
+            $file->move("images", $name);
+
+            //get this photoid
+           // Photo::update(["file"=>$name])->where();
+
+            //insert photo name in photos table
+            $photo = Photo::create(["file" => $name]);
+
+            $input['photo_id'] = $photo->id;
+
+        }//close if ($file = $request->file('photo_id')) {
+
+
+        //update user's data
+        $user->update($input);
+
+        //redirect to index page
+
+        return redirect('admin/users');    
+
     }
 
     /**
