@@ -48,4 +48,11 @@ class User extends Authenticatable
         return false;
     }//close public function isAdmin(){
 
+    //define one to many relationship
+    public function posts(){
+
+        return $this->hasMany('App\Post');
+    }    
+        
+
 }
