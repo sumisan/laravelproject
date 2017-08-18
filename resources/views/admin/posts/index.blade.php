@@ -5,7 +5,12 @@
 
 	<h1>Posts</h1>
 
-	
+	<!--check if deleted_post session exists-->
+	@if(Session::has('deleted_post'))
+		<div class="alert alert-success">
+			{{session('deleted_post')}}
+		</div>
+	@endif
 
 	<table class="table">
 		<thead>
@@ -32,10 +37,10 @@
 					<tr>
 						<td>{{$post->id}}</td>
 						<td><img height="50" src="{{$post->photo ? $post->photo->file : '/images/image.png'}}"></td>
-						<td>{{$post->user->name}}</td>
-						<td>{{$post->category_id}}</td>
+						<td><a href="{{ route('posts.edit', $post->id) }}">{{$post->user->name}}</a></td>
+						<td>{{$post->category ? $post->category->name : 'Uncategorised'}}</td>
 						<td>{{$post->title}}</td>
-						<td>{{$post->body}}</td>
+						<td>{{str_limit($post->body, 9, '...')}}</td>
 						<td>{{$post->created_at->diffForhumans()}}</td>
 						<td>{{$post->updated_at->diffForhumans()}}</td>
 					</tr>
